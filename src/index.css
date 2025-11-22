@@ -1,1 +1,8 @@
 @import "tailwindcss";
+
+@theme {
+  /* Custom box shadows */
+  --shadow-soft: 0 2px 15px rgb(0 0 0 / 0.08);
+  --shadow-hard: 0 8px 30px rgb(0 0 0 / 0.15);
+  --shadow-neon: 0 0 8px rgb(0 255 255 / 0.6);
+}
