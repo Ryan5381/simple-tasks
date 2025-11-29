@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Ming Wang",
+    "email": "ming@example.com",
+    "password": "123456",
+    "createDate": "2024-10-01"
+  },
+  {
+    "id": 2,
+    "name": "Mei Chen",
+    "email": "mei@example.com",
+    "password": "abc123",
+    "createDate": "2024-11-12"
+  },
+  {
+    "id": 3,
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "password",
+    "createDate": "2024-12-05"
+  },
+  {
+    "id": 4,
+    "name": "Yaya Lin",
+    "email": "yaya@example.com",
+    "password": "yaya777",
+    "createDate": "2024-12-20"
+  },
+  {
+    "id": 5,
+    "name": "Chih Hao",
+    "email": "chih@example.com",
+    "password": "999999",
+    "createDate": "2025-01-03"
+  }
+]
