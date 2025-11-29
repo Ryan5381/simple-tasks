@@ -1,9 +1,43 @@
 import React, { useState } from "react";
-import { Form, Input, Button } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Form, Input, Button, message } from "antd";
+import useAuthStore from "../stores/useAuthStore";
 const { Password } = Input;
 
 const Auth = () => {
   const [mode, setMode] = useState<"login" | "register">("login");
+  const { login, register, error } = useAuthStore();
+  const navigate = useNavigate();
+  const [form] = Form.useForm();
+
+  const handleSubmit = (v: any) => {
+    const { email, password, confirmPassword } = v;
+
+    if (mode === "register") {
+      if (password !== confirmPassword) {
+        message.error("兩次輸入的密碼不一樣");
+        return;
+      }
+
+      const ok = register(email.split("@")[0], email, password);
+      if (!ok) {
+        message.error(error || "註冊失敗");
+        return;
+      }
+      message.success("註冊成功");
+      navigate("/task");
+    }
+
+    if (mode === "login") {
+      const ok = login(email, password);
+      if (!ok) {
+        message.error(error || "登入失敗");
+        return;
+      }
+      message.success("登入成功");
+      navigate("/task");
+    }
+  };
 
   return (
     <div className="flex flex-col items-center my-15 p-4">
@@ -16,17 +50,32 @@ const Auth = () => {
           <p className="text-gray-600 text-sm mt-1">輸入您的資訊以繼續</p>
         </div>
 
-        <Form layout="vertical">
-          <Form.Item label="電子郵件">
+        <Form layout="vertical" form={form} onFinish={handleSubmit}>
+          <Form.Item
+            label="電子郵件"
+            name="email"
+            rules={[
+              { required: true, message: "請輸入email" },
+              { type: "email", message: "請輸入有效email" },
+            ]}
+          >
             <Input />
           </Form.Item>
 
-          <Form.Item label="密碼">
+          <Form.Item
+            label="密碼"
+            name="password"
+            rules={[{ required: true, message: "請輸入密碼" }]}
+          >
             <Password placeholder="請輸入您的密碼" />
           </Form.Item>
           {/* 註冊mode要顯示再次確認密碼 */}
           {mode === "register" && (
-            <Form.Item label="密碼確認">
+            <Form.Item
+              label="密碼確認"
+              name="confirmPassword"
+              rules={[{ required: true, message: "請再次輸入密碼" }]}
+            >
               <Password placeholder="請再次輸入您的密碼" />
             </Form.Item>
           )}
@@ -35,7 +84,8 @@ const Auth = () => {
               type="primary"
               block
               size="large"
-              onClick={() => console.log("login / register")}
+              // onClick={() => console.log("login / register")}
+              htmlType="submit"
             >
               {mode === "login" ? "登入" : "建立帳號"}
             </Button>
