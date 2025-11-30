@@ -4,14 +4,21 @@ import { Form, Input, Button, message } from "antd";
 import useAuthStore from "../stores/useAuthStore";
 const { Password } = Input;
 
-const Auth = () => {
+interface AuthFormValues {
+  name?: string;
+  email: string;
+  password: string;
+  confirmPassword?: string;
+}
+
+const Auth: React.FC = () => {
   const [mode, setMode] = useState<"login" | "register">("login");
   const { login, register, error } = useAuthStore();
   const navigate = useNavigate();
   const [form] = Form.useForm();
 
-  const handleSubmit = (v: any) => {
-    const { email, password, confirmPassword } = v;
+  const handleSubmit = (v: AuthFormValues) => {
+    const { name, email, password, confirmPassword } = v;
 
     if (mode === "register") {
       if (password !== confirmPassword) {
@@ -19,7 +26,7 @@ const Auth = () => {
         return;
       }
 
-      const ok = register(email.split("@")[0], email, password);
+      const ok = register(name ?? "", email, password);
       if (!ok) {
         message.error(error || "註冊失敗");
         return;
@@ -51,6 +58,15 @@ const Auth = () => {
         </div>
 
         <Form layout="vertical" form={form} onFinish={handleSubmit}>
+          {mode === "register" && (
+            <Form.Item
+              label="姓名"
+              name="name"
+              rules={[{ required: true, message: "請輸入姓名" }]}
+            >
+              <Input placeholder="請輸入姓名" />
+            </Form.Item>
+          )}
           <Form.Item
             label="電子郵件"
             name="email"
@@ -59,7 +75,7 @@ const Auth = () => {
               { type: "email", message: "請輸入有效email" },
             ]}
           >
-            <Input />
+            <Input placeholder="請輸入email" />
           </Form.Item>
 
           <Form.Item
