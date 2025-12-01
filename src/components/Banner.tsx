@@ -1,7 +1,9 @@
 import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 import homeBranner from "../assets/home.jpg";
 
 const Branner = () => {
+  const navigate = useNavigate();
   return (
     <div className="mt-10 px-4">
       <div className="relative mx-auto w-full max-w-7xl h-60 sm:h-75 md:h-95 lg:h-105 rounded-2xl overflow-hidden shadow-lg">
@@ -35,6 +37,7 @@ const Branner = () => {
                 backgroundColor: "#3859FA",
                 color: "#fff",
               }}
+              onClick={() => navigate("/auth")}
             >
               Get Started
             </Button>
