@@ -6,10 +6,12 @@ import Footer from "../components/Footer";
 
 const Homepage = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <Banner />
-      <Features />
+      <div className="grow">
+        <Banner />
+        <Features />
+      </div>
       <Footer />
     </div>
   );
