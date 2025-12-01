@@ -29,6 +29,9 @@ const Navbar = () => {
             <span className="text-gray-700 font-medium">
               Hi, {currentUser.name}
             </span>
+            <Button type="primary" onClick={() => navigate("/task")}>
+              新增任務
+            </Button>
             <Button danger onClick={handleLogout}>
               登出
             </Button>
