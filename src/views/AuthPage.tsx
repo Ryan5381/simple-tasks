@@ -5,9 +5,11 @@ import Footer from "../components/Footer";
 
 const AuthPage = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <Auth />
+      <div className="grow">
+        <Auth />
+      </div>
       <Footer />
     </div>
   );

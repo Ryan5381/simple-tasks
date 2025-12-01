@@ -5,9 +5,11 @@ import Footer from "../components/Footer";
 
 const TasksPage = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-      <TodoList />
+      <div className="grow">
+        <TodoList />
+      </div>
       <Footer />
     </div>
   );
