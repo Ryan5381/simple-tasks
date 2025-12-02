@@ -1,73 +1,59 @@
-# React + TypeScript + Vite
+# Simple Tasks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+一個使用 **React + TypeScript + Vite** 開發的輕量級待辦事項管理工具。  
+支援會員登入、註冊，並提供任務新增、編輯、刪除與完成狀態切換。
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 功能 (Features)
 
-## React Compiler
+### 🔐 會員
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 註冊 / 登入 / 登出
+- 狀態使用 Zustand Persist 儲存在 localStorage
+- 每個使用者擁有獨立任務列表
 
-## Expanding the ESLint configuration
+### 📝 任務管理 (Task CRUD)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 新增任務
+- 編輯任務（標題 / 描述 / Deadline）
+- 刪除任務
+- 切換完成狀態
+- 查看單一任務 `/task/:id`
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 👤 測試帳號（預設）
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+| Name | Email            | Password |
+| ---- | ---------------- | -------- |
+| Ming | ming@example.com | 123456   |
+| Chih | chih@example.com | 999999   |
+
+---
+
+## 🛠 技術 (Tech Stack)
+
+- **React 19**
+- **TypeScript**
+- **Vite**
+- **Zustand**（含 persist middleware）
+- **React Router v7**
+- **Ant Design**
+- **Tailwind CSS 4**
+- **JSON 檔案作為 mock 資料庫**
+
+---
+
+## 📦 安裝與啟動
+
+```bash
+npm install
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+**啟動後瀏覽：http://localhost:5173**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📄 License
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+**僅供個人練習與作品集展示使用。**
